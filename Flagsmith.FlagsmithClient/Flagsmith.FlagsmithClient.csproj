@@ -15,7 +15,7 @@
     <PackageIcon>icon.png</PackageIcon>
     <PackageReleaseNotes>Singleton HTTP client</PackageReleaseNotes>
     <PackageTags>feature flags remote config toggles</PackageTags>
-    <RepositoryUrl>https://github.com/Flagsmith/flagsmith-dotnet-client</RepositoryUrl>
+    <RepositoryUrl>https://github.com/amdigital-co-uk/flagsmith-dotnet-client-am</RepositoryUrl>
     <NeutralLanguage>en-GB</NeutralLanguage>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
