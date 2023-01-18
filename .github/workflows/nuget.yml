@@ -19,4 +19,4 @@ jobs:
       PROJECTS: "Flagsmith.FlagsmithClient"
       SKIP_DUPLICATE: true
     secrets:
-      PKG_TOKEN: ${{ secrets.PKG_TOKEN }}
+      PKG_TOKEN: ${{ secrets.GITHUB_TOKEN }}
