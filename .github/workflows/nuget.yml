@@ -1,13 +1,6 @@
 # CI workflow for Quartex NuGet packages
 name: Build and publish NuGet package
 
-# Customise environment variables for current repository
-env:
-    RUN_TESTS: false # Set to false if repository contains no Unit Tests
-    PKG_SRC: https://nuget.pkg.github.com/amdigital-co-uk/index.json
-    PROJECTS: "Quartex.Common.Background Quartex.Common.Background.Tasks Quartex.Common.RegularTasks Quartex.MessageQueue.Handler"
-
-
 # Define triggers for when the workflow will run
 on:
   push:
@@ -18,36 +11,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    name: Build and publish NuGet package
-    runs-on: ubuntu-latest
-    steps:
-      # Checks-out repository
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      
-      # Login to GitHub packages
-      - name: Login to GitHub packages
-        uses: actions/setup-dotnet@v1
-        with:
-          source-url: ${{ env.PKG_SRC }}
-        env:
-          NUGET_AUTH_TOKEN: ${{ secrets.PKG_TOKEN }}
-      
-      # Run Unit Tests (if enabled)
-      - name: Run Unit Tests
-        if: ${{ env.RUN_TESTS == 'true' }}
-        run: dotnet test
-      
-      # Package libraries and push to GitHub packages
-      - name: Create and push NugetPackages packages
-        run: |
-          for project in $PROJECTS
-          do
-            cd $project
-            cp ../../nuget.config .
-            dotnet restore
-            dotnet pack -c Release -o pkgs --no-restore
-            dotnet nuget push pkgs/*.nupkg -k ${{secrets.GITHUB_TOKEN}} -s Source --skip-duplicate
-            cd ..
-          done
+
+  nuget:
+    uses: amdigital-co-uk/quartex-workflows/.github/workflows/nuget.yml@v11
+    with:
+      PKG_SRC: https://nuget.pkg.github.com/amdigital-co-uk/index.json
+      PROJECTS: "Flagsmith.FlagsmithClient"
+      SKIP_DUPLICATE: true
+    secrets:
+      PKG_TOKEN: ${{ secrets.PKG_TOKEN }}

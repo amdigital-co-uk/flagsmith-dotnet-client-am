@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <DefaultItemExcludes>$(DefaultItemExcludes);example/**;</DefaultItemExcludes>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <PackageId>Flagsmith</PackageId>
+    <PackageId>Flagsmith.AM</PackageId>
     <Title>Flagsmith</Title>
     <Version>4.2.1</Version>
     <Authors>flagsmith</Authors>
